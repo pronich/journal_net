@@ -7,6 +7,10 @@ class Student:
         self.courses_in_progress = []
         self.grade = {}
 
+    def avg_course_grade(self, course):
+        avg_course_grade = round(sum(self.grade[course])/len(self.grade[course]), 1)
+        return avg_course_grade
+
     def avg_grade(self):
         grade_list = []
         for k, v in self.grade.items():
@@ -52,6 +56,10 @@ class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grade = {}
+
+    def avg_course_grade(self, course):
+        avg_course_grade = round(sum(self.grade[course])/len(self.grade[course]), 1)
+        return avg_course_grade
 
     def avg_grade(self):
         grade_list = []

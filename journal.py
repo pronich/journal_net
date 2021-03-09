@@ -1,5 +1,24 @@
 from classes import Student, Lecturer, Reviewer
 
+def avg_grade_students(students, course):
+    grade_list = []
+    for student in students:
+        if course in student.grade:
+            grade_list.append(student.avg_course_grade(course))
+        else: continue
+    avg_grade = round(sum(grade_list)/len(grade_list), 1)
+    return avg_grade
+
+def avg_course_grade(lectures, course):
+    grade_list = []
+    for lecture in lectures:
+        if course in lecture.grade:
+            grade_list.append(lecture.avg_course_grade(course))
+        else:
+            continue
+    avg_grade = round(sum(grade_list) / len(grade_list), 1)
+    return avg_grade
+
 # Создаем всех по 2
 peter = Student('Peter', 'Parker', 'male')
 peter.courses_in_progress += ['Python', 'JS', 'Git']
@@ -32,14 +51,7 @@ leon.courses_list += ['JS', 'English']
 ada = Reviewer('Ada', 'Barova')
 ada.courses_list += ['Python', 'English', 'Git']
 
-# Проверяем все методы
-# 0. Выводим изначальные данные по каждому персонажу
-# 1. Студент завершает курс
-# 2. Студенты оценивает лекторов
-# 3. Ревьюеры оценивает студентов по нескольким предметам
-# 4. Сравниваем 2 лекторов по средней оценке
-# 5. Выводим информацию по каждому из персонажей
-
+# Выводим информацию по персонажам и изменениям с ними
 print(f'-------------------------------------------------\nИзначальная информация по персонажам')
 print(f'{peter}\n-----\n{sonya}\n-----\n{max}\n-----\n{john}\n-----\n{leon}\n-----\n{ada}')
 
@@ -60,3 +72,8 @@ print(f'------\n{max > john}')
 
 print(f'-------------------------------------------------\nИтоговая информация по персонажам')
 print(f'{peter}\n-----\n{sonya}\n-----\n{max}\n-----\n{john}\n-----\n{leon}\n-----\n{ada}')
+
+print(f'-------------------------------------------------\nСчитаем средние оценки')
+print(avg_grade_students([peter, sonya], 'Git'))
+print(f'-----')
+print(avg_course_grade([max, john], 'Python'))
